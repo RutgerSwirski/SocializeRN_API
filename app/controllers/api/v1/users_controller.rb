@@ -21,11 +21,20 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors
-    end
+    profile_pic_uri = params[:profile_picture_data][:uri]
+    # safe_data = {
+    #   cloud_name = 'dsfmdlng2',
+    #   api_key = '599491585974218',
+    #   api_secret = 'qDOBrbip5mVz6K5juv9KkIVH3_I'
+    # }
+    result = Cloudinary::Uploader.upload(profile_pic_uri)
+      # ENV['CLOUDINARY_URL'])
+
+    # if @user.update(user_params)
+    #   render json: @user
+    # else
+    #   render json: @user.errors
+    # end
   end
 
   def destroy
