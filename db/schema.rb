@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_150327) do
+ActiveRecord::Schema.define(version: 2019_11_07_183902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invites", force: :cascade do |t|
+    t.string "date_time"
+    t.string "location"
+    t.string "status"
+    t.bigint "sender_id"
+    t.bigint "reciever_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reciever_id"], name: "index_invites_on_reciever_id"
+    t.index ["sender_id"], name: "index_invites_on_sender_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -23,6 +35,11 @@ ActiveRecord::Schema.define(version: 2019_11_02_150327) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "first_login", default: true
+    t.float "longitude", default: 0.0
+    t.float "latitude", default: 0.0
   end
 
+  add_foreign_key "invites", "users", column: "reciever_id"
+  add_foreign_key "invites", "users", column: "sender_id"
 end
