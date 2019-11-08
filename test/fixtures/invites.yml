@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_time: 
+  location: MyString
+  status: MyString
+  sender: one
+  reciever: one
+
+two:
+  date_time: 
+  location: MyString
+  status: MyString
+  sender: two
+  reciever: two
