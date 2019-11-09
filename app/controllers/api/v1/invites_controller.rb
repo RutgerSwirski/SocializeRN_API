@@ -4,7 +4,7 @@ class Api::V1::InvitesController < ApplicationController
   # GET /invites
   def index
     @invites = Invite.where(reciever_id: params[:user_id], status: 'pending')
-    render json: @invites.to_json( include: [:sender] )
+    render json: @invites.to_json( include: [:sender, :reciever] )
   end
 
   # GET /invites/1
