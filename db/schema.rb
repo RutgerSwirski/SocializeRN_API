@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_183902) do
+ActiveRecord::Schema.define(version: 2019_11_09_001439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_183902) do
     t.boolean "first_login", default: true
     t.float "longitude", default: 0.0
     t.float "latitude", default: 0.0
+    t.string "notification_token"
   end
 
   add_foreign_key "invites", "users", column: "reciever_id"
