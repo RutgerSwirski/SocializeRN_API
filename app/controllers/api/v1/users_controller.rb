@@ -58,6 +58,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :profile_picture_url, :first_name, :last_name, :description, :first_login, :longitude, :latitude)
+      params.require(:user).permit(:email, :profile_picture_url, :first_name, :last_name, :description, :first_login, :longitude, :latitude, :notification_token)
     end
 end
