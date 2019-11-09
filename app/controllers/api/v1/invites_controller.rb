@@ -42,7 +42,7 @@ class Api::V1::InvitesController < ApplicationController
 
   def get_accepted_user_invites
     @invites = Invite.where(reciever_id: params[:user_id], status: 'accepted').or(Invite.where(sender_id: params[:user_id], status: 'accepted'))
-    render json: @invites.to_json( include: [:sender] )
+    render json: @invites.to_json( include: [:sender, :reciever] )
   end
 
   private
