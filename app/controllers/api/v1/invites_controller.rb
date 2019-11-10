@@ -3,7 +3,7 @@ class Api::V1::InvitesController < ApplicationController
 
   # GET /invites
   def index
-    @invites = Invite.where(reciever_id: params[:user_id], status: 'pending')
+    @invites = Invite.where(reciever_id: params[:user_id], status: 'pending').order(date_time: :asc)
     render json: @invites.to_json( include: [:sender, :reciever] )
   end
 
