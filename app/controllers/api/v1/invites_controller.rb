@@ -3,7 +3,7 @@ class Api::V1::InvitesController < ApplicationController
 
   # GET /invites
   def index
-    @invites = Invite.where(reciever_id: params[:user_id], status: 'pending').reverse
+    @invites = Invite.where(reciever_id: params[:user_id], status: 'pending')
     render json: @invites.to_json( include: [:sender, :reciever] )
   end
 
@@ -43,7 +43,7 @@ class Api::V1::InvitesController < ApplicationController
   end
 
   def get_accepted_user_invites
-    @invites = Invite.where(reciever_id: params[:user_id], status: 'accepted').or(Invite.where(sender_id: params[:user_id], status: 'accepted'))
+    @invites = Invite.where(reciever_id: params[:user_id], status: 'accepted').or(Invite.where(sender_id: params[:user_id], status: 'accepted')).order(date_time: :asc)
     render json: @invites.to_json( include: [:sender, :reciever] )
   end
 
