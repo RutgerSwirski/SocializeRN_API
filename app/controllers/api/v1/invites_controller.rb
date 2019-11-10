@@ -53,6 +53,6 @@ class Api::V1::InvitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invite_params
-      params.require(:invite).permit(:date_time, :location, :status, :sender_id, :reciever_id, :seen)
+      params.require(:invite).permit(:date_time, :location, :status, :sender_id, :reciever_id, :seen, :longitude, :latitude)
     end
 end
