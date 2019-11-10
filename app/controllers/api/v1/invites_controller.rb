@@ -18,6 +18,8 @@ class Api::V1::InvitesController < ApplicationController
     @invite.sender = User.find(params[:sender_id])
     @invite.reciever = User.find(params[:reciever_id])
     @invite.date_time = params[:datetime]
+    @invite.longitude = params[:longitude]
+    @invite.latitude = params[:latitude]
     @invite.status = 'pending'
     if @invite.save
       render json: @invite
