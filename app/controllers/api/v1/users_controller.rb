@@ -33,7 +33,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def set_app_user
-    @user = User.where(email: params[:email])
+    @user = User.find_by(email: params[:email])
     if @user 
       render json: @user
     else
