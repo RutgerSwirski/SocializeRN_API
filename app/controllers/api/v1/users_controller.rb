@@ -10,7 +10,8 @@ class Api::V1::UsersController < ApplicationController
   def show
     puts params
     # @reviews = Review.where(reviewee_id: params[:reviewee_id])
-    # render json: @user.to_json(include: @reviews)
+    render json: @user
+    # .to_json(include: @reviews)
   end
 
   def create
