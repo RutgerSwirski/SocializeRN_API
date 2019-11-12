@@ -18,12 +18,12 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     @review.reviewer = User.find(params[:reviewer_id])
-    @invite.reviewee = User.find(params[:reviewee_id])
+    @review.reviewee = User.find(params[:reviewee_id])
 
     if @review.save
-      render json: @review, status: :created, location: @review
+      render json: @review
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: @review.errors
     end
   end
 
@@ -49,6 +49,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def review_params
-      params.require(:review).permit(:rating, :description, :reviewer_id, :reviewee_id, :invite_id)
+      params.require(:review).permit(:rating, :description, :reviewer_id, :reviewee_id)
     end
 end
