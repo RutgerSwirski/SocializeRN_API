@@ -8,6 +8,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @reviews = Review.where(reviewee_id: params[:id])
+    puts @reviews
     render json: @user.to_json(include: @reviews)
   end
 
