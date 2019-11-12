@@ -17,6 +17,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
 
+    @review.reviewer = User.find(params[:reviewer_id])
+    @invite.reviewee = User.find(params[:reviewee_id])
+
     if @review.save
       render json: @review, status: :created, location: @review
     else
