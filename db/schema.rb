@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_10_001646) do
+ActiveRecord::Schema.define(version: 2019_11_12_102705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2019_11_10_001646) do
     t.index ["sender_id"], name: "index_invites_on_sender_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "description"
+    t.bigint "reviewer_id"
+    t.bigint "reviewee_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reviewee_id"], name: "index_reviews_on_reviewee_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "profile_picture_url"
@@ -46,4 +57,6 @@ ActiveRecord::Schema.define(version: 2019_11_10_001646) do
 
   add_foreign_key "invites", "users", column: "reciever_id"
   add_foreign_key "invites", "users", column: "sender_id"
+  add_foreign_key "reviews", "users", column: "reviewee_id"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
 end

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :invites
   namespace :api do  
   	namespace :v1 do   
   		resources :users do 
+        resources :reviews, only: [:create, :index]
   			resources :invites, only: [:create]
   		end
   		post '/set_app_user', to: 'users#set_app_user'
