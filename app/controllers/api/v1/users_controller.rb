@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @reviews = Review.where(reviewee_id: params[:id])
-    render json: { user: @user, user_reviews: @reviews.as_json( include: [:reviewer] ) }
+    render json: { user: @user, user_reviews: @reviews.as_json( include: [:reviewer]) }
   end
 
   def create
@@ -37,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find_by(email: params[:email])
     @reviews = Review.where(reviewee_id: @user.id)
     if @user 
-      render json: { user: @user, user_reviews: @reviews }
+      render json: { user: @user, user_reviews: @reviews.as_json( include: [:reviewer]) }
     else
       render json: @user.errors
     end
