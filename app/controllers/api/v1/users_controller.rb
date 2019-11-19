@@ -4,6 +4,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     @users = User.all
     render json: @users
+
   end
 
   def show
@@ -34,8 +35,9 @@ class Api::V1::UsersController < ApplicationController
 
   def set_app_user
     @user = User.find_by(email: params[:email])
+    @reviews = Review.where(reviewee_id: @user.id)
     if @user 
-      render json: @user
+      render json: { user: @user, user_reviews: @reviews }
     else
       render json: @user.errors
     end
