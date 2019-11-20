@@ -54,6 +54,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def get_nearby_users
+    @user = User.find(params[:id])
+    @nearby_users = User.near([@user.longitude, @user.latitude])
+    if @nearby_users
+      render json: @nearby_users
+    else
+      render @nearby_users.errors
+    end
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
