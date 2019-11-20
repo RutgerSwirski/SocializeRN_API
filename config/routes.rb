@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
       post '/get_accepted_user_invites', to: 'invites#get_accepted_user_invites'
       patch '/update_user_location', to: 'users#update_user_location'
+
+      post '/get_nearby_users', to: 'users#get_nearby_users'
       
       resources :invites, only: :update
   	end 
